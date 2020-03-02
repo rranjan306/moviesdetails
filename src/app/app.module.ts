@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //3rd Party Libaray
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //Services
-import{ ImageGetterService } from './services/image-getter/image-getter.service';
-import{ MoviesService } from './services/movies/movies.service';
+import { ImageGetterService } from './services/image-getter/image-getter.service';
+import { MoviesService } from './services/movies/movies.service';
+import { InterceptorService} from './services/interceptor/interceptor.service';
+import { AuthService} from './services/auth/auth.service';
+import { RegistrationService} from './services/registration/registration.service';
 
 //Custom NgModule
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -22,6 +26,9 @@ import { BollywoodComponent } from './components/bollywood/bollywood.component';
 import { AnimatedComponent } from './components/animated/animated.component';
 import { SeriesComponent } from './components/series/series.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { UppercasePipe } from './pipes/uppercase/uppercase.pipe';
 
 
 @NgModule({
@@ -34,15 +41,26 @@ import { HomeComponent } from './components/home/home.component';
     BollywoodComponent,
     AnimatedComponent,
     SeriesComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegistrationComponent,
+    UppercasePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [ImageGetterService, MoviesService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    ImageGetterService,
+    MoviesService,
+    AuthService,
+    RegistrationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
