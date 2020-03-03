@@ -1,0 +1,70 @@
+<div class="login component">
+	<h1>Movies House Resgistration</h1>
+	<form class="registration-form" [formGroup]="user" (ngSubmit)="registration()">
+		<div class="md-form form-group username">
+		 	<mdb-icon fas icon="male" class="prefix"></mdb-icon>
+		  <input mdbInput type="text" id="name" class="form-control" name="name" formControlName="name">
+		  <label for="name">Full Name</label>
+		  <div *ngIf="name.touched && name.invalid">
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="name.errors.required">Full Name cannot be empty</pre>
+		  </div>
+		</div>
+		<div class="md-form form-group username">
+		  <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+		  <input mdbInput type="text" id="user" class="form-control" name="username" formControlName="username">
+		  <label for="user">Username</label>
+		  <div *ngIf="username.touched && username.invalid">
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="username.errors.required">Username cannot be empty</pre>
+		  </div>
+		</div>
+		<div class="md-form form-group password no-margin">
+		  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+		  <input mdbInput type="text" id="password" class="form-control" name="password" formControlName="password">
+		  <label for="password">Password</label>
+		  <div *ngIf="password.touched && password.invalid">
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="password.errors.required">Password cannot be empty</pre>
+		  	<pre [ngStyle]="{'color': 'red'}" color="danger" *ngIf="password.errors.minlength">Password must be atleast {{password.errors.minlength.requiredLength}} char long</pre>
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="password.errors.maxlength">Password cannot be greater than {{password.errors.maxlength.requiredLength}} char</pre>
+		  </div>
+		</div>
+		<div class="md-form form-group phone">
+		  <mdb-icon fas icon="phone" class="prefix"></mdb-icon>
+		  <input mdbInput type="text" id="phone" class="form-control" name="phone" formControlName="phone">
+		  <label for="phone">Phone</label>
+		  <div *ngIf="phone.touched && phone.invalid">
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="phone.errors.required">Phone cannot be empty</pre>
+		  	<pre [ngStyle]="{'color': 'red'}" color="danger" *ngIf="phone.errors.minlength">Phone must be atleast {{phone.errors.minlength.requiredLength}} char long</pre>
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="phone.errors.maxlength">Phone cannot be greater than {{phone.errors.maxlength.requiredLength}} char</pre>
+		  </div>
+		</div>
+		<div class="md-form form-group email">
+		 	<mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+		  <input mdbInput type="text" id="email" class="form-control" name="email" formControlName="email">
+		  <label for="email">Email</label>
+		  <div *ngIf="email.touched && email.invalid">
+		  	<pre [ngStyle]="{'color': 'red'}" *ngIf="email.errors.required">Email cannot be empty</pre>
+		  </div>
+		</div>
+		<fieldset formGroupName="address">
+			<legend>Address</legend>
+			<div class="md-form form-group street">
+			  <mdb-icon fas icon="map-marker-alt" class="prefix"></mdb-icon>
+			  <input mdbInput type="text" id="street" class="form-control" name="street" formControlName="street">
+			  <label for="street">Street</label>
+			</div>
+			<div class="md-form form-group city">
+			  <mdb-icon fas icon="city" class="prefix"></mdb-icon>
+			  <input mdbInput type="text" id="city" class="form-control" name="city" formControlName="city">
+			  <label for="city">City</label>
+			</div>
+			<div class="md-form form-group state">
+			  <mdb-icon fas icon="map-pin" class="prefix"></mdb-icon>
+			  <input mdbInput type="text" id="street" class="form-control" name="state" formControlName="state">
+			  <label for="state">State</label>
+			</div>
+		</fieldset>
+		<div class="login-btn">
+			<button mdbBtn color="elegant" mdbWavesEffect [disabled]="">Registration</button>
+		</div>
+	</form>
+</div>
