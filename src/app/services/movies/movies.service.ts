@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
+import { IUsers } from '../../interfaces/users/users';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +11,14 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies() {
-  	const headers = new HttpHeaders({
-			"x-rapidapi-host": "box-office-buz1.p.rapidapi.com",
-			"x-rapidapi-key": "99e41e9b23mshc5c132edc72c0c8p138d39jsn70f3ce704b75"
-		});
-		
-  	return this.http.get('', { headers });
+  getMovieDetails(id: string): Observable<any> {
+    const params = new HttpParams().set('id', id);
+    return this.http
+               .get('movie-details', { params })
+               .pipe(retry(1))
+  }
+
+  getUsers(): Observable<IUsers[]> {
+    return this.http.get<IUsers[]>('https://jsonplaceholder.typicode.com/users');
   }
 }

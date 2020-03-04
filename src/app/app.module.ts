@@ -29,6 +29,11 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UppercasePipe } from './pipes/uppercase/uppercase.pipe';
+import { MovieComponent } from './components/movie/movie/movie.component';
+import { HboComponent } from './components/hbo/hbo.component';
+import { YoutubeComponent } from './components/youtube/youtube.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
+import { ShadowDirective } from './directives/shadow/shadow.directive';
 
 
 @NgModule({
@@ -44,7 +49,12 @@ import { UppercasePipe } from './pipes/uppercase/uppercase.pipe';
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    UppercasePipe
+    UppercasePipe,
+    MovieComponent,
+    HboComponent,
+    YoutubeComponent,
+    AppFooterComponent,
+    ShadowDirective
   ],
   imports: [
     BrowserModule,

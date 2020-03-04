@@ -1,23 +1,31 @@
 <div class="login component">
 	<h1>Movies House Login</h1>
-	<form class="login-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-		<div class="md-form form-group username">
-		  <mdb-icon fas icon="user" class="prefix"></mdb-icon>
-		  <input mdbInput type="text" id="user" class="form-control" name="username" #username="ngModel" ngModel>
-		  <label for="user">Username</label>
-		</div>
-		<div class="md-form form-group password">
-		  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
-		  <input mdbInput type="text" id="password" class="form-control" name="password" #password="ngModel" ngModel minlength="5" maxlength="10">
-		  <label for="password">Password</label>
-		  <div *ngIf="password.touched && password.invalid">
-		  	<pre color="danger" *ngIf="password.errors.minlength">Password must be atleast {{password.errors.minlength.requiredLength}} char long</pre>
-		  	<pre *ngIf="password.errors.maxlength">Password cannot be greater than {{password.errors.maxlength.requiredLength}} char</pre>
-		  </div>
-		</div>
-		<div class="login-btn">
-			<button mdbBtn color="elegant" mdbWavesEffect>Login</button>
-		</div>
-	</form>
+	<div class="d-flex justify-content-center" *ngIf="loading">
+	  <div class="spinner-border" role="status">
+	    <span class="sr-only">Loading...</span>
+	  </div>
+	</div>
+
+	<div *ngIf="!loading">
+		<form class="login-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+			<div class="md-form form-group username">
+			  <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+			  <input mdbInput type="text" id="user" class="form-control" name="username" #username="ngModel" ngModel>
+			  <label for="user">Username</label>
+			</div>
+			<div class="md-form form-group password">
+			  <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+			  <input mdbInput type="text" id="password" class="form-control" name="password" #password="ngModel" ngModel minlength="5" maxlength="10">
+			  <label for="password">Password</label>
+			  <div *ngIf="password.touched && password.invalid">
+			  	<pre color="danger" *ngIf="password.errors.minlength">Password must be atleast {{password.errors.minlength.requiredLength}} char long</pre>
+			  	<pre *ngIf="password.errors.maxlength">Password cannot be greater than {{password.errors.maxlength.requiredLength}} char</pre>
+			  </div>
+			</div>
+			<div class="login-btn">
+				<button mdbBtn color="elegant" mdbWavesEffect>Login</button>
+			</div>
+		</form>
 	<div class="sign-up-link"><a [routerLink]="['/registration']">Sign Up</a></div>
+	</div>
 </div>

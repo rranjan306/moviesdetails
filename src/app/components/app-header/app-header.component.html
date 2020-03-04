@@ -22,13 +22,27 @@
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/animated']">Animated Movies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/series']">Web Series</a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/series']">Series</a>
       </li>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+        Web Series<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['./HBO']">HBO</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['./YouTube']">YouTube</a>
+        </div>
+    </li>
 
     </ul>
     <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <form class="form-inline md-form form-sm">
+          <mdb-icon fas icon="search" class="white-text" aria-hidden="true"></mdb-icon>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInput (keyup)="search($event)">
+        </form>
+      </li>
       <li class="nav-item">
         <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
       </li>
@@ -37,8 +51,8 @@
           <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/login']">Log in</a>
+          <a *ngIf="token" class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Log out</a>
+          <a *ngIf="!token" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/login']">Log in</a>
         </div>
       </li>
     </ul>
