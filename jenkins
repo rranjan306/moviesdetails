@@ -1,0 +1,10 @@
+node {
+  stage 'Checkout'
+    git url: 'git@github.com:rranjan306/moviesdetails.git', branch: '$Branch'
+    
+  stage 'Install dependencies'
+    sh 'npm install'
+
+  stage 'Docker build'
+    docker.build('movieshouse/angular8')
+}
