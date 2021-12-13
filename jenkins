@@ -1,5 +1,5 @@
 node {
-  stage 'Checkoutt'
+  stage 'Checkouttt'
     git url: 'git@github.com:rranjan306/moviesdetails.git', branch: '$Branch'
     
   stage 'Install dependencies'
